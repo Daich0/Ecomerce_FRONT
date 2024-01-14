@@ -6,7 +6,7 @@ import Form from './productForm';
 import UpdatedProduct from "./Updateproduct";
 
 function page() {
-  const [productos, setLocalProductos] = useState([]);
+  const [productos, setProductos] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -22,7 +22,7 @@ function page() {
   const obtenerProductos = async () => {
     try {
       const response = await axios.get("http://localhost:8080/productos");
-      setLocalProductos(response.data);
+      setProductos(response.data);
     } catch (error) {
       console.error("Error al obtener a los usuarios:", error);
     }
@@ -35,7 +35,7 @@ function page() {
   
       // Actualizar localmente la lista de productos después de la eliminación
       const updatedProductos = productos.filter((producto) => producto.id !== productoId);
-      setLocalProducts(updatedProductos);
+      setProductos(updatedProductos);
     } catch (error) {
       console.error("Error al eliminar el producto", error);
     }
@@ -47,10 +47,10 @@ function page() {
   };
 
   const handleProductUpdate = (updatedProduct) => {
-    const updatedProducts = localProducts.map((product) =>
+    const updatedProducts = productos.map((product) =>
     product.id === updatedProduct.id ? updatedProduct : product
   );
-  setLocalProducts(updatedProducts);
+  setProductos(updatedProducts);
     console.log("Product updated:", updatedProduct);
   };
 
