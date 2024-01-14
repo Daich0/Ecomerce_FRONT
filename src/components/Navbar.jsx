@@ -45,8 +45,15 @@ console.log(rol); */
           {session?.user && (
           <>
             {/* Mostrar el nombre y rol del usuario cuando está autenticado */}
-            <span className="text-white">{session.user.nombre} 1</span>
-            <span className="text-white">{session.user.rol} 2</span>
+            <ul>
+              <il>
+              <Link href="/productos">Productos</Link>
+              </il>
+              <il>
+              <Link href="/usuarios">Register</Link>
+              </il>
+            </ul>
+          
             {/* Agregar el componente UserMenu aquí si es necesario */}
           </>
         )}
@@ -65,9 +72,7 @@ console.log(rol); */
           </>
         ) : (
           <>
-            <li>
-              <Link href="/dashboard">Dashboard</Link>
-            </li>
+            
             <li>
               <Link href="/api/auth/signout">Logout</Link>
             </li>
