@@ -161,6 +161,7 @@ const ProductForm = ({ closeModal }) => {
         <button
           className="px-5 py-3 m-2 mx-auto text-white duration-150 bg-indigo-600 rounded-full hover:bg-indigo-500 active:bg-indigo-700"
           type="submit"
+          
         >
           Agregar Producto
         </button>

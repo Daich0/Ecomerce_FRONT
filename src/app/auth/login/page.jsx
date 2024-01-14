@@ -32,8 +32,8 @@ function LoginPage() {
   });
 
   return (
-    <div className="h-[calc(100vh-7rem)] flex justify-center items-center">
-      <form onSubmit={onSubmit} className="w-1/4">
+    <div className="h-[calc(100vh-7rem)] flex justify-center items-center ">
+      <form onSubmit={onSubmit} className="w-1/4 bg-slate-900 p-8  rounded-lg space-y-4 ">
 
         {error && (
           <p className="bg-red-500 text-lg text-white p-3 rounded mb-2">{error}</p>
@@ -52,7 +52,7 @@ function LoginPage() {
               message: "Email is required",
             },
           })}
-          className="p-3 rounded block mb-2 bg-slate-900 text-slate-300 w-full"
+          className="p-3 rounded block mb-2 bg-slate-800 text-slate-300 w-full"
           placeholder="user@email.com"
         />
 
@@ -71,7 +71,7 @@ function LoginPage() {
               message: "Password is required",
             },
           })}
-          className="p-3 rounded block mb-2 bg-slate-900 text-slate-300 w-full"
+          className="p-3 rounded block mb-2 bg-slate-800 text-slate-300 w-full"
           placeholder="******"
         />
 

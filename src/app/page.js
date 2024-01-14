@@ -71,7 +71,7 @@ function Page() {
   return (
     <>
     {/*  <Navega />  Componente de navegación */}
-      <br/><br/><br/><br/><br/>
+      <br/>
       <ProductList /> {/* Lista de productos */}
     
     </>

@@ -1,10 +1,22 @@
 
-import React from 'react';
 
+import React, { useState } from 'react';
+import ProductModal from './ProductModal';
 // Definimos el componente ProductCard, que recibe 'product' como prop.
+
 const ProductCard = ({ producto }) => {
   // Si el producto no está disponible (es decir, es nulo o indefinido), 
   // mostramos un mensaje indicando que el producto no está disponible.
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   if (!producto) {
     return <div className="text-center py-4">Producto no disponible.</div>;
   }
@@ -39,10 +51,15 @@ const ProductCard = ({ producto }) => {
       </div>
       {/* Botón para agregar el producto */}
       <div className="px-4 pt-2 pb-2">
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded text-sm">
-          AGREGAR
+        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded text-sm"
+         onClick={openModal}
+         >
+          MAS
         </button>
       </div>
+      {isModalOpen && (
+        <ProductModal producto={producto} onClose={closeModal} />
+      )}
     </div>
   );
 };

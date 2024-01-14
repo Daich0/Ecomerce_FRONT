@@ -29,9 +29,10 @@ function page() {
   };
 
   const handleDelete = async (productoId) => {
+    console.log(productoId);
     try {
       // Realizar la solicitud DELETE al servidor para eliminar el producto por su ID
-      await axios.delete(`http://localhost:3000/productos/${productoId}`);
+      await axios.delete(`http://localhost:8080/productos/${productoId}`);
   
       // Actualizar localmente la lista de productos después de la eliminación
       const updatedProductos = productos.filter((producto) => producto.id !== productoId);
@@ -46,12 +47,30 @@ function page() {
     setShowEditModal(!showEditModal);
   };
 
-  const handleProductUpdate = (updatedProduct) => {
-    const updatedProducts = productos.map((product) =>
-    product.id === updatedProduct.id ? updatedProduct : product
-  );
-  setProductos(updatedProducts);
-    console.log("Product updated:", updatedProduct);
+  const handleProductUpdate = async (updatedProduct) => {
+    try {
+      const updatedProducts = productos.map((product) =>
+        product.id === updatedProduct.id ? updatedProduct : product
+      );
+      setProductos(updatedProducts);
+      console.log("Product updated:", updatedProduct);
+      await obtenerProductos();
+
+      onClose(); // Cerrar el modal después de editar el producto
+    } catch (error) {
+      console.error("Error al actualizar el producto", error.message);
+    }
+  };
+
+ 
+  
+  const handleProductAdd = async () => {
+    // Puedes realizar alguna acción después de agregar un nuevo producto
+    // Por ejemplo, cerrar el modal
+    toggleModal();
+
+    // Vuelve a obtener los productos para actualizar la lista
+    await obtenerProductos();
   };
 
   return (
@@ -131,7 +150,7 @@ function page() {
                   <button
                     href="javascript:void()"
                     className="py-2 leading-none px-3 font-medium text-red-600 hover:text-red-500 duration-150 hover:bg-gray-50 rounded-lg"
-                    onClick={() => handleDelete(product.id)}
+                    onClick={() => handleDelete(producto.id)}
                  >
                     Delete
                   </button>
@@ -143,7 +162,7 @@ function page() {
       </div>
       {showModal && (
         <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50">
-          <Form closeModal={toggleModal} />
+          <Form closeModal={handleProductAdd} />
         </div>
       )}
       {showEditModal && selectedProduct && (
